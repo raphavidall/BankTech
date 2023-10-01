@@ -12,6 +12,6 @@ contas.get("/contas/saldo", mostrarSaldo);
 contas.get("/contas/extrato", mostrarExtrato);
 contas.post("/contas", validacaoDeDados, criarConta);
 contas.put("/contas/:numeroConta/usuario", validacaoDeDados, atualizarUsuario);
-contas.delete("/contas/:numeroConta", deletarConta);
+contas.delete("/contas/:numeroConta?", deletarConta);
 
 module.exports = contas;

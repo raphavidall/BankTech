@@ -44,7 +44,7 @@ const criarConta = (req, res) => {
             ...novaConta
         });
 
-        return res.status(200).json({ message: 'Conta Cadastrada com sucesso!' })
+        return res.status(201).json();
     } catch (erro) {
         return respostaDeErro(res, "Falha no cadastro da nova conta", 500);
     }
@@ -65,7 +65,7 @@ const atualizarUsuario = (req, res) => {
         contaEncontrada.usuario.email = req.body.email;
         contaEncontrada.usuario.senha = req.body.senha;
 
-        return res.status(200).json({ message: "Conta atualizada com sucesso." });
+        return res.status(204).json();
     } catch (erro) {
         return respostaDeErro(res, "Falha ao atualizar conta bancária.", 500);
     }
@@ -85,7 +85,7 @@ const deletarConta = (req, res) => {
 
         if (contaEncontrada.saldo === 0) {
             bancoDeDados.contas.splice(indiceConta, 1);
-            return res.status(204).json({ message: "Conta excluída com sucesso." });
+            return res.status(204).json();
         } else {
             return respostaDeErro(res, "A conta só pode ser excluída quando o saldo for zero.", 400);
         }

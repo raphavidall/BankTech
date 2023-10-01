@@ -31,6 +31,9 @@ function respostaDeErro(res, mensagem, status = 400) {
 const depositoConta = (req, res) => {
     try {
         const { numero_conta, valor } = req.body;
+        if (!numero_conta) {
+            return respostaDeErro(res, "A conta deve ser informada.", 400);
+        }
 
         const contaEncontrada = encontrarConta(numero_conta);
 
@@ -51,7 +54,7 @@ const depositoConta = (req, res) => {
         }
         bancoDeDados.depositos.push(novoDeposito);
 
-        return res.status(200).json()
+        return res.status(204).json()
     } catch (erro) {
         respostaDeErro(res, "Erro interno do servidor.", 500);
     }
@@ -87,7 +90,7 @@ const saqueConta = (req, res) => {
         }
         bancoDeDados.saques.push(novoSaque);
 
-        return res.status(200).json()
+        return res.status(204).json()
     } catch (erro) {
         respostaDeErro(res, "Erro interno do servidor.", 500);
     }
@@ -97,7 +100,10 @@ const transferirValor = (req, res) => {
     try {
         const { numero_conta_origem, numero_conta_destino, valor, senha } = req.body;
         if (!numero_conta_destino || !numero_conta_origem) {
-            return respostaDeErro(res, "Conta de origem ou destino não informada.", 404);
+            return respostaDeErro(res, "Conta de origem ou destino não informada.", 400);
+        }
+        if (numero_conta_destino === numero_conta_origem) {
+            return respostaDeErro(res, "Conta de destino inválida.", 400);
         }
         const contaOrigem = encontrarConta(numero_conta_origem);
         const contaDestino = encontrarConta(numero_conta_destino);

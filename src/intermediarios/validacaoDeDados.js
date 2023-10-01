@@ -16,7 +16,7 @@ const validacaoDeDados = (req, res, next) => {
     }
 
     if (!email) {
-        return res.status(404).json({ message: "O email deve ser informado." })
+        return res.status(400).json({ message: "O email deve ser informado." })
     };
     const emailExiste = bancoDeDados.contas.some((conta) => conta.usuario.email === email);
     if (emailExiste) {
