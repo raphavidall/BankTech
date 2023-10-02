@@ -59,6 +59,8 @@ Você pode [acessar o código fonte do projeto](https://github.com/raphavidall/B
 
 Para começar a usar a API Bank Tech, siga estas etapas:
 
+Faça um Fork do repositório.
+
 Clone este repositório em sua máquina local:
 
     git clone https://github.com/seu-usuario/BankTech.git
@@ -77,11 +79,12 @@ A API Bank Tech estará disponível em http://localhost:3000.
 
 Para realizar requisições com os verbos POST, PUT, DELETE use o app Insomnia ou similar.
 
-    ⚠️ Importante: Este é um projeto de demonstração e não representa um sistema bancário real. Todas as operações são fictícias e apenas para fins educacionais.
+#### ⚠️ Importante: Este é um projeto de demonstração e não representa um sistema bancário real. Todas as operações são fictícias e apenas para fins educacionais.
+
 
 ###### tags: `back-end` | `nodeJS` | `API REST`
 
 ## Desenvolvedora
 
 | [<img src="https://avatars.githubusercontent.com/u/118291210?v=4" width=40><br><sub>Raphaela Vidal</sub>](https://github.com/raphavidall) |
-| :---: 
+| :---: |
