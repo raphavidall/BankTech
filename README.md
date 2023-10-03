@@ -16,7 +16,6 @@
 
 - [Desenvolvedora](#desenvolvedora)
 
-
 ## Descrição do projeto
 
 <p align="justify">
@@ -25,15 +24,15 @@
 
 ## Funcionalidades
 
--   Criar conta bancária
--   Listar contas bancárias
--   Atualizar os dados do usuário da conta bancária
--   Excluir uma conta bancária
--   Depósitar em uma conta bancária
--   Sacar de uma conta bancária
--   Transferir valores entre contas bancárias
--   Consultar saldo da conta bancária
--   Emitir extrato bancário
+- Criar conta bancária
+- Listar contas bancárias
+- Atualizar os dados do usuário da conta bancária
+- Excluir uma conta bancária
+- Depósitar em uma conta bancária
+- Sacar de uma conta bancária
+- Transferir valores entre contas bancárias
+- Consultar saldo da conta bancária
+- Emitir extrato bancário
 
 ### Demonstração Insomnia:
 
@@ -49,7 +48,6 @@
 <img src="https://i.ibb.co/F6Lwhv4/apps-insomnia-512x512.png" alt="insominia-icons" width="60">
 <br>
 <a href="https://insomnia.rest/download"><span> Insomnia </span></a>
-
 
 ## Acesso ao projeto
 
@@ -71,17 +69,108 @@ Instale as dependências do projeto com o comando:
 
 Execute o código com o comando:
 
-    node servidor.js 
+    node servidor.js
 
 A API Bank Tech estará disponível em http://localhost:3000.
 
 Para realizar requisições com os verbos POST, PUT, DELETE use o app Insomnia ou similar.
 
-    ⚠️ Importante: Este é um projeto de demonstração e não representa um sistema bancário real. Todas as operações são fictícias e apenas para fins educacionais.
+### Aqui está uma lista dos métodos e parâmetros obrigatórios para que você consiga obter os dados na API:
+
+#### Listar todas as contas do banco:
+
+    GET - localhost:3000/contas?senha_banco="SenhaDefinidaNoBancoDeDados"
+
+    No parâmetro de consulta, inclua a senha definida para o banco no arquivo de banco de dados.
+
+#### Criar uma nova conta:
+
+    POST - localhost:3000/contas
+
+    No corpo da requisição, envie um objeto no formato json contendo os seguintes dados:
+        {
+            "nome": "Exemplo",
+    		"cpf": "00000000000",
+    		"data_nascimento": "01/01/1992",
+    		"telefone": "85900000000",
+    		"email": "exemplo@exemplo.com",
+    		"senha": "Teste123"
+        }
+    Este método criará uma nova conta bancária no seu banco de dados. A API irá retornar mensagens de erro personalizadas, caso algum campo não esteja no formato adequado, ou caso algum campo obrigatório não seja informado.
+
+#### Atualizar os dados do usuário da conta bancária:
+
+    PUT - localhost:3000/contas/:numeroConta/usuario
+
+    No corpo da requisição, envie um objeto no formato json contendo os seguintes dados:
+       {
+            "nome": "Exemplo",
+    		"cpf": "00000000000",
+    		"data_nascimento": "01/01/1992",
+    		"telefone": "85900000000",
+    		"email": "exemplo@exemplo.com",
+    		"senha": "Teste123"
+        }
+    Este método atualizará os dados da conta bancária especificada no parâmetro de rota pelo (:numeroConta). Assim como na criação de uma nova conta, a API irá retornar mensagens de erro personalizadas, caso algum campo não esteja no formato adequado, ou caso algum campo obrigatório não seja informado.
+
+#### Excluir uma conta bancária:
+
+    DELETE - localhost:3000/contas/:numeroConta
+
+    Para excluir uma conta basta realizar o método delete na rota supracitada, indicando o numero da conta a ser excluída no parâmetro de rota (:numeroConta).
+
+#### Depósitar em uma conta bancária:
+
+    POST - localhost:3000/transacoes/depositar
+    No corpo da requisição, envie um objeto no formato json contendo os seguintes dados:
+        {
+            "numero_conta": 1,
+    		"valor": 1000
+        }
+    O valor informado será adicionado ao saldo da conta especificada no objeto.
+
+#### Sacar de uma conta bancária:
+
+    POST - localhost:3000/transacoes/sacar
+
+    No corpo da requisição, envie um objeto no formato json contendo os seguintes dados:
+        {
+            "numero_conta": 1,
+    		"valor": 1000,
+            "senha": "Conta01"
+        }
+    O valor informado será deduzido do saldo da conta especificada no objeto.
+
+#### Transferir valores entre contas bancárias:
+
+    POST - localhost:3000/transacoes/tranferir
+
+    No corpo da requisição, envie um objeto no formato json contendo os seguintes dados:
+        {
+            "numero_conta_origem": 1,
+            "numero_conta_destino": 2,
+    		"valor": 1000,
+            "senha": "senhaDaContaOrigem"
+        }
+    O valor informado será deduzido da conta de origem e adicionado ao saldo da conta de destino especificadas no objeto.
+
+#### Consultar saldo da conta bancária:
+
+    GET - localhost:3000/contas/saldo?numero_conta=1&senha=SenhaConta1
+
+    Este método retornará o saldo atualizado da conta especificada no parâmetro de consulta (numero_conta), a senha da conta também deve ser passada no parâmetro de consulta.
+
+#### Emitir extrato bancário:
+
+    GET - localhost:3000/contas/extrato?numero_conta=1&senha=SenhaConta1
+
+    Este método retornará o extrato atualizado da conta especificada no parâmetro de consulta (numero_conta), a senha da conta também deve ser passada no parâmetro de consulta.
+
+#### ⚠️ Importante: Este é um projeto de demonstração e não representa um sistema bancário real. Todas as operações são fictícias e apenas para fins educacionais.
 
 ###### tags: `back-end` | `nodeJS` | `API REST`
 
 ## Desenvolvedora
 
 | [<img src="https://avatars.githubusercontent.com/u/118291210?v=4" width=40><br><sub>Raphaela Vidal</sub>](https://github.com/raphavidall) |
-| :---: 
+| :---:
