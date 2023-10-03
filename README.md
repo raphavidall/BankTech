@@ -57,6 +57,8 @@ Você pode [acessar o código fonte do projeto](https://github.com/raphavidall/B
 
 Para começar a usar a API Bank Tech, siga estas etapas:
 
+Faça um Fork do repositório.
+
 Clone este repositório em sua máquina local:
 
     git clone https://github.com/seu-usuario/BankTech.git
